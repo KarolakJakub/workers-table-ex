@@ -12,7 +12,7 @@ function App() {
 
   // setWorkers(newWorkers)
 
-  console.log(workers)
+
 
   return (
     <div><WorkersTable workers={workers}></WorkersTable></div>
