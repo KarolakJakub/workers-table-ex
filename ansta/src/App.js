@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import workersjson from './data/workers'
 import WorkersTable from './components/WorkersTable'
+import PayRange from './components/PayRange'
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
     return workers.filter( worker => {
      
       console.log((worker['imie']+' '+worker['nazwisko']).toString())
-      return ((worker['imie']+' '+worker['nazwisko']).toString()).includes(nameFilter)
+      return ((worker['imie']+' '+worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter)
 
       // return (/nameFilter/gm).exec(worker['imie']+' '+worker['nazwisko'])
     })
@@ -34,7 +35,12 @@ function App() {
 
   return (<>{console.log(nameFilter, workers)}
     <div><WorkersTable workers={filterWorkers()}></WorkersTable></div>
+    <br></br>
+    <p>Wyszukaj pracownika:</p>
     <input onChange={handleFilterChange} ></input>
+    <br></br>
+    <p>Filtruj pracowników wg. wynagrodzenia:</p>
+    <PayRange></PayRange>
     </>
   );
 }

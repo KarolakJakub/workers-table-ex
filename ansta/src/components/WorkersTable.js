@@ -8,7 +8,7 @@ export default function WorkersTable(props) {
     const { workers } = props
 
 
-    return (<>Imie  nazwisko  dzial wynagrodzenie
+    return (<>Imie  nazwisko  dzial wynagrodzenie<br></br><br></br>
         {workers.map((worker, index) => {
 
         return <Worker
