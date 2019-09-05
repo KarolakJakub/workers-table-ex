@@ -26,6 +26,7 @@ export default function PayByDepartment(props) {
                 return { ...acc, [Object.keys(pay)[0]]: parseFloat(Object.values(pay)) }
 
             } else {
+                
                 return { ...acc, [Object.keys(pay)[0]]: parseFloat(acc[Object.keys(pay)[0]]) + parseFloat(Object.values(pay)) }
             }
 
@@ -40,10 +41,10 @@ export default function PayByDepartment(props) {
 
 
     return (<><br></br>
-        Całkowita suma zarobków: <div>{Object.keys(pay).map(department => {
-            return (<div>{department+' '+pay[department]}</div>)
+        Suma zarobków wg. departamentu: <div>{Object.keys(pay).map((department, index) => {
+            return (<div key={index}>{department+' '+pay[department]+' PLN'}</div>)
         }
-        )}</div> PLN
+        )}</div>
     </>
     )
 }
