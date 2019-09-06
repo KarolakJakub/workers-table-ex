@@ -9,39 +9,58 @@ function App() {
 
   const [workers, setWorkers] = useState(Array.from(workersjson))
   const [nameFilter, setNameFilter] = useState('')
+  const [minMaxPay, setSetMinMaxPay] = useState(getMinMaxPayValue(workers))
 
-  // const newWorkers = Object.values(JSON.stringify(workersjson))
+  function getMinMaxPayValue(workers) {
 
+    const parsedInitMinMax = [parseFloat(workers[0]['wynagrodzenieKwota']), parseFloat(workers[1]['wynagrodzenieKwota'])]
 
-  // setWorkers(newWorkers)
+    return workers.reduce((acc, worker) => {
+
+      const parsedWorkerPay = parseFloat(worker['wynagrodzenieKwota'])
+
+      if (parsedWorkerPay < acc[0]) {
+        return acc = [parsedWorkerPay, acc[1]]
+
+      } if (parsedWorkerPay > acc[1]) {
+        return acc = [acc[0], parsedWorkerPay]
+      }
+      return acc
+    }, parsedInitMinMax)
+
+  }
 
   function handleFilterChange(event) {
 
     setNameFilter(event.target.value)
   }
 
-  function filterWorkers() {
-    console.log(nameFilter)
-    return workers.filter( worker => {
-     
-      console.log((worker['imie']+' '+worker['nazwisko']).toString())
-      return ((worker['imie']+' '+worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter)
+  function payRangeSliderChange(newValue) {
+    setSetMinMaxPay(newValue)
+  }
 
-      // return (/nameFilter/gm).exec(worker['imie']+' '+worker['nazwisko'])
+  function filterWorkers() {
+
+    return workers.filter(worker => {
+
+      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter) && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1])
+
     })
   }
 
-  console.log(filterWorkers())
+  
 
-  return (<>{console.log(nameFilter, workers)}
+  return (<>
     <div><WorkersTable workers={filterWorkers()}></WorkersTable></div>
     <br></br>
     <p>Wyszukaj pracownika:</p>
     <input onChange={handleFilterChange} ></input>
     <br></br>
     <p>Filtruj pracowników wg. wynagrodzenia:</p>
-    <PayRange></PayRange>
-    </>
+    <PayRange
+      minmax={getMinMaxPayValue(workers)}
+      payRangeSliderChange = { setSetMinMaxPay }></PayRange>
+  </>
   );
 }
 
