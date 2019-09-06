@@ -24,7 +24,6 @@ export default function PayRange(props) {
         return null
     };
 
-console.log(minmax)
     return (
         <Slider
             min={minmax[0]}

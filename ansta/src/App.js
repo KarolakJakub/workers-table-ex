@@ -4,12 +4,13 @@ import './App.css';
 import workersjson from './data/workers'
 import WorkersTable from './components/WorkersTable'
 import PayRange from './components/PayRange'
+import { Slider } from '@material-ui/core';
 
 function App() {
 
   const [workers, setWorkers] = useState(Array.from(workersjson))
   const [nameFilter, setNameFilter] = useState('')
-  const [minMaxPay, setSetMinMaxPay] = useState(getMinMaxPayValue(workers))
+  const [minMaxPay, setMinMaxPay] = useState(getMinMaxPayValue(workers))
 
   function getMinMaxPayValue(workers) {
 
@@ -35,10 +36,6 @@ function App() {
     setNameFilter(event.target.value)
   }
 
-  function payRangeSliderChange(newValue) {
-    setSetMinMaxPay(newValue)
-  }
-
   function filterWorkers() {
 
     return workers.filter(worker => {
@@ -48,18 +45,29 @@ function App() {
     })
   }
 
-  
+  function filterWorkersByName() {
 
-  return (<>
+    return workers.filter(worker => {
+
+      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter))
+
+    })
+  }
+
+
+
+  return (<>{console.log(filterWorkersByName())}
     <div><WorkersTable workers={filterWorkers()}></WorkersTable></div>
     <br></br>
     <p>Wyszukaj pracownika:</p>
     <input onChange={handleFilterChange} ></input>
     <br></br>
     <p>Filtruj pracowników wg. wynagrodzenia:</p>
-    <PayRange
-      minmax={getMinMaxPayValue(workers)}
-      payRangeSliderChange = { setSetMinMaxPay }></PayRange>
+    {
+      (filterWorkersByName().length < 2) ? <Slider></Slider> :
+        <PayRange
+          minmax={getMinMaxPayValue(filterWorkersByName())}
+          payRangeSliderChange={setMinMaxPay}></PayRange>}
   </>
   );
 }

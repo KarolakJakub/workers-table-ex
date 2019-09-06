@@ -16,10 +16,9 @@ export default function PayByDepartment(props) {
 
         })
 
-        console.log(workersToDepPay)
+
         const reducedDepPay = workersToDepPay.reduce((acc, pay) => {
 
-            console.log(acc)
 
             if (acc[Object.keys(pay)[0]] === undefined) {
 
@@ -33,7 +32,6 @@ export default function PayByDepartment(props) {
 
         }, {})
 
-        console.log(reducedDepPay)
 
         setPay(reducedDepPay)
     }, [workers])
