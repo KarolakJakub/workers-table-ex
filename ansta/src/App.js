@@ -11,10 +11,11 @@ function App() {
   const [workers, setWorkers] = useState(Array.from(workersjson))
   const [nameFilter, setNameFilter] = useState('')
   const [minMaxPay, setMinMaxPay] = useState(getMinMaxPayValue(workers))
+  
 
   function getMinMaxPayValue(workers) {
 
-    const parsedInitMinMax = [parseFloat(workers[0]['wynagrodzenieKwota']), parseFloat(workers[1]['wynagrodzenieKwota'])]
+    const parsedInitMinMax = [parseFloat(workers[0]['wynagrodzenieKwota']), parseFloat(workers[0]['wynagrodzenieKwota'])]
 
     return workers.reduce((acc, worker) => {
 
@@ -34,6 +35,12 @@ function App() {
   function handleFilterChange(event) {
 
     setNameFilter(event.target.value)
+  }
+
+  function handleSliderChange(newValue) {
+
+    setMinMaxPay(newValue)
+
   }
 
   function filterWorkers() {
@@ -56,7 +63,7 @@ function App() {
 
 
 
-  return (<>{console.log(filterWorkersByName())}
+  return (<>{console.log(workers, minMaxPay)}
     <div><WorkersTable workers={filterWorkers()}></WorkersTable></div>
     <br></br>
     <p>Wyszukaj pracownika:</p>
@@ -66,8 +73,9 @@ function App() {
     {
       (filterWorkersByName().length < 2) ? <Slider></Slider> :
         <PayRange
+        value={minMaxPay}
           minmax={getMinMaxPayValue(filterWorkersByName())}
-          payRangeSliderChange={setMinMaxPay}></PayRange>}
+          payRangeSliderChange={handleSliderChange}></PayRange>}
   </>
   );
 }
