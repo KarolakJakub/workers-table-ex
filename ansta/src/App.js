@@ -4,6 +4,7 @@ import './App.css';
 import workersjson from './data/workers'
 import WorkersTable from './components/WorkersTable'
 import PayRange from './components/PayRange'
+import DepartmentsFilter from './components/DepartmentsFilter'
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   const [workers, setWorkers] = useState(Array.from(workersjson))
   const [nameFilter, setNameFilter] = useState('')
   const [minMaxPay, setMinMaxPay] = useState(getMinMaxPayValue(workers))
-  
+  const [depFilter, setDepFilter] = useState({})
+
 
   function getMinMaxPayValue(workers) {
 
@@ -43,11 +45,19 @@ function App() {
 
   }
 
+  function handleDepFilterChange(depList){
+
+    setDepFilter(depList)
+
+  }
+
   function filterWorkers() {
 
     return workers.filter(worker => {
 
-      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter) && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1])
+      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter)
+       && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1]
+       && depFilter[worker['dzial']] === true)
 
     })
   }
@@ -64,7 +74,9 @@ function App() {
 
 
   return (<>{console.log(workers, minMaxPay)}
-    <div><WorkersTable workers={filterWorkers()}></WorkersTable></div>
+    <div><WorkersTable
+      workers={filterWorkers()}>
+    </WorkersTable></div>
     <br></br>
     <p>Wyszukaj pracownika:</p>
     <input onChange={handleFilterChange} ></input>
@@ -73,9 +85,15 @@ function App() {
     {
       (filterWorkersByName().length < 2) ? <Slider></Slider> :
         <PayRange
-        value={minMaxPay}
+          value={minMaxPay}
           minmax={getMinMaxPayValue(filterWorkersByName())}
           payRangeSliderChange={handleSliderChange}></PayRange>}
+    <br></br>
+    <p>Filtruj pracowników wg. działu:</p>
+    <DepartmentsFilter
+    workers={workers}
+    onDepFilterChange={handleDepFilterChange}
+    ></DepartmentsFilter>
   </>
   );
 }
