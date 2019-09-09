@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function PayByDepartment(props) {
+export default function DepartmentsFilter(props) {
 
     const { workers, onDepFilterChange } = props
 
@@ -8,6 +8,10 @@ export default function PayByDepartment(props) {
 
     useEffect(() => onDepFilterChange(depList)
         , [depList])
+
+    useEffect(()=> setDepList(buildDepList(workers))
+
+    , [workers])
 
     function buildDepList(workers) {
 

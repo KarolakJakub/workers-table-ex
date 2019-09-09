@@ -5,6 +5,7 @@ import workersjson from './data/workers'
 import WorkersTable from './components/WorkersTable'
 import PayRange from './components/PayRange'
 import DepartmentsFilter from './components/DepartmentsFilter'
+import AddWorkerForm from './components/AddWorkerForm'
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
   function handleFilterChange(event) {
 
     setNameFilter(event.target.value)
+    
   }
 
   function handleSliderChange(newValue) {
@@ -48,6 +50,12 @@ function App() {
   function handleDepFilterChange(depList){
 
     setDepFilter(depList)
+
+  }
+
+  function handleFormSubmit(newWorker) {
+
+    setWorkers([...workers, newWorker])
 
   }
 
@@ -93,7 +101,11 @@ function App() {
     <DepartmentsFilter
     workers={workers}
     onDepFilterChange={handleDepFilterChange}
-    ></DepartmentsFilter>
+    ></DepartmentsFilter><br></br>
+    <div>Dodaj nowego pracownika:</div>
+    <AddWorkerForm
+    onFormSubmit={handleFormSubmit}
+    ></AddWorkerForm>
   </>
   );
 }
