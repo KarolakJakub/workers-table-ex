@@ -9,8 +9,10 @@ span{
 .workersTable, .workersHeader{
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   word-wrap: break-word;
+  border-collapse: collapse;
+  
 }
 
 .workersTable>div, .workersHeader>div{
@@ -18,5 +20,18 @@ span{
   border: 1px solid black;
   word-wrap: break-word;
   word-break: break-all;
-  
+
+}
+
+.workersHeader>div{
+  font-weight: 700;
+  text-align: center;
+}
+
+h3{
+  margin-bottom: 3vh;
+}
+
+.sliderWrapper{
+  width: 50%;
 }

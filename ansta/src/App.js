@@ -91,10 +91,10 @@ function App() {
       workers={filterWorkers()}>
     </WorkersTable></div>
     <br></br>
-    <p>Wyszukaj pracownika:</p>
+    <h3>Wyszukaj pracownika:</h3>
     <input onChange={handleFilterChange} ></input>
     <br></br>
-    <p>Filtruj pracowników wg. wynagrodzenia:</p>
+    <h3>Filtruj pracowników wg. wynagrodzenia:</h3>
     {
       (filterWorkersByName().length < 2) ? <Slider></Slider> :
         <PayRange
@@ -102,12 +102,12 @@ function App() {
           minmax={getMinMaxPayValue(filterWorkersByName())}
           payRangeSliderChange={handleSliderChange}></PayRange>}
     <br></br>
-    <p>Filtruj pracowników wg. działu:</p>
+    <h3>Filtruj pracowników wg. działu:</h3>
     <DepartmentsFilter
       workers={workers}
       onDepFilterChange={handleDepFilterChange}
     ></DepartmentsFilter><br></br>
-    <div>Dodaj nowego pracownika:</div>
+    <h3>Dodaj nowego pracownika:</h3>
     <AddWorkerForm
       onFormSubmit={handleFormSubmit}
     ></AddWorkerForm>

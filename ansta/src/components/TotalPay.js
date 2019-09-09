@@ -12,8 +12,8 @@ export default function TotalPay(props) {
     }
 
 
-    return (<><br></br>
-        Całkowita suma zarobków: {totalSum()} PLN
+    return (<>
+        <h3>Całkowita suma zarobków:</h3> <div>{totalSum()} PLN</div>
     </>
     )
 }

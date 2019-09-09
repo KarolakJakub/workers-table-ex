@@ -44,7 +44,7 @@ export default function PayRange(props) {
         payRangeSliderChange(payRange)
     }
 
-    return (<>{console.log(payRange)}
+    return (<div className='sliderWrapper'>{console.log(payRange)}
         <Slider
             min={minmax[0]}
             max={minmax[1]}
@@ -57,6 +57,6 @@ export default function PayRange(props) {
         {/* <input value={payRange[0]} onChange={handleMinInputChange}></input>-
         <input value={payRange[1]} onChange={handleMaxInputChange}></input> */}
 
-    </>
+    </div>
     )
 }

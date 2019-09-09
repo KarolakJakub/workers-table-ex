@@ -22,6 +22,13 @@ export default function AddWorkerForm(props) {
 
         event.preventDefault()
         onFormSubmit(newWorker)
+        setNewWorker({
+            imie: "",
+            nazwisko: "",
+            dzial: "",
+            wynagrodzenieKwota: "",
+            wynagrodzenieWaluta: "PLN"
+        })
 
     }
 

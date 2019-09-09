@@ -38,10 +38,10 @@ export default function PayByDepartment(props) {
 
 
     return (<><br></br>
-        Suma zarobków wg. departamentu: <div>{Object.keys(pay).map((department, index) => {
+        <h3>Suma zarobków wg. departamentu:</h3> {Object.keys(pay).map((department, index) => {
             return (<div key={index}><b>{department + ':'}</b>{+pay[department] + ' PLN'}</div>)
         }
-        )}</div >
+        )}
     </>
     )
 }
