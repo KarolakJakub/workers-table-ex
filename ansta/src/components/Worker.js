@@ -6,7 +6,11 @@ export default function Worker(props) {
 
 
     return (<>
-        <div>{props.worker['imie']+' '+props.worker['nazwisko']+' '+props.worker['dzial']+' '+props.worker['wynagrodzenieKwota'] + ' ' + props.worker['wynagrodzenieWaluta']}</div>
+        <div>{props.worker['imie']}</div>
+        <div>{props.worker['nazwisko']}</div>
+        <div>{props.worker['dzial']}</div>
+        <div>{props.worker['wynagrodzenieKwota']}</div>
+        <div>{props.worker['wynagrodzenieWaluta']}</div>
 
     </>
     )

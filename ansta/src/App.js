@@ -15,6 +15,10 @@ function App() {
   const [minMaxPay, setMinMaxPay] = useState(getMinMaxPayValue(workers))
   const [depFilter, setDepFilter] = useState({})
 
+  useEffect(() =>
+    setMinMaxPay(getMinMaxPayValue(workers))
+    , [workers])
+
 
   function getMinMaxPayValue(workers) {
 
@@ -38,7 +42,7 @@ function App() {
   function handleFilterChange(event) {
 
     setNameFilter(event.target.value)
-    
+
   }
 
   function handleSliderChange(newValue) {
@@ -47,7 +51,7 @@ function App() {
 
   }
 
-  function handleDepFilterChange(depList){
+  function handleDepFilterChange(depList) {
 
     setDepFilter(depList)
 
@@ -57,6 +61,7 @@ function App() {
 
     setWorkers([...workers, newWorker])
 
+
   }
 
   function filterWorkers() {
@@ -64,8 +69,8 @@ function App() {
     return workers.filter(worker => {
 
       return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter)
-       && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1]
-       && depFilter[worker['dzial']] === true)
+        && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1]
+        && depFilter[worker['dzial']] === true)
 
     })
   }
@@ -99,12 +104,12 @@ function App() {
     <br></br>
     <p>Filtruj pracowników wg. działu:</p>
     <DepartmentsFilter
-    workers={workers}
-    onDepFilterChange={handleDepFilterChange}
+      workers={workers}
+      onDepFilterChange={handleDepFilterChange}
     ></DepartmentsFilter><br></br>
     <div>Dodaj nowego pracownika:</div>
     <AddWorkerForm
-    onFormSubmit={handleFormSubmit}
+      onFormSubmit={handleFormSubmit}
     ></AddWorkerForm>
   </>
   );

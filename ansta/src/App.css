@@ -1,6 +1,22 @@
 *{
-  margin: 2%
+  margin: 1%
 }
+
 span{
   margin: 0%
+}
+
+.workersTable, .workersHeader{
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  word-wrap: break-word;
+}
+
+.workersTable>div, .workersHeader>div{
+  margin: 0;
+  border: 1px solid black;
+  word-wrap: break-word;
+  word-break: break-all;
+  
 }
