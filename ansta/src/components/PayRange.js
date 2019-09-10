@@ -1,12 +1,9 @@
 import Slider from '@material-ui/core/Slider';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function PayRange(props) {
 
     const { minmax, payRangeSliderChange, value } = props
-
-    const [payRange, setPayRange] = useState(minmax)
-    const [rangeInputs, setRangeInputs] = useState(minmax)
 
     const labels = [
         {
@@ -20,9 +17,9 @@ export default function PayRange(props) {
     ]
 
     const handleSliderChange = (event, newValue) => {
-        setPayRange(newValue);
+
         payRangeSliderChange(newValue)
-        return null
+
     };
 
     return (<div className='sliderWrapper'>
@@ -31,7 +28,6 @@ export default function PayRange(props) {
             max={minmax[1]}
             value={value}
             onChange={handleSliderChange}
-            valueLabelDisplay="auto"
             aria-labelledby="range-slider"
             marks={labels}
             valueLabelDisplay="on"></Slider>
