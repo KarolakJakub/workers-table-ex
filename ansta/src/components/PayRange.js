@@ -25,26 +25,7 @@ export default function PayRange(props) {
         return null
     };
 
-    function handleMinInputChange(event) {
-
-        if (parseFloat(event.target.value) > payRange[0] && parseFloat(event.target.value) < payRange[1]) {
-            const newRange = [parseFloat(event.target.value), payRange[1]]
-            setPayRange(newRange)
-            payRangeSliderChange(newRange)
-            return
-        } else {
-            event.target.value.concat('lol')
-           
-        }
-    }
-
-    function handleMaxInputChange(event) {
-        const newRange = [payRange[0], parseFloat(event.target.value)]
-        setPayRange(newRange)
-        payRangeSliderChange(payRange)
-    }
-
-    return (<div className='sliderWrapper'>{console.log(payRange)}
+    return (<div className='sliderWrapper'>
         <Slider
             min={minmax[0]}
             max={minmax[1]}
@@ -54,8 +35,6 @@ export default function PayRange(props) {
             aria-labelledby="range-slider"
             marks={labels}
             valueLabelDisplay="on"></Slider>
-        {/* <input value={payRange[0]} onChange={handleMinInputChange}></input>-
-        <input value={payRange[1]} onChange={handleMaxInputChange}></input> */}
 
     </div>
     )

@@ -86,7 +86,7 @@ function App() {
 
 
 
-  return (<>{console.log(workers, minMaxPay)}
+  return (<>
     <div><WorkersTable
       workers={filterWorkers()}>
     </WorkersTable></div>

@@ -34,7 +34,6 @@ export default function AddWorkerForm(props) {
 
 
     return (<>
-        {console.log(newWorker)}
         <form onSubmit={handleFormSubmit}>
             <p>
                 <label htmlFor="imie">Imię</label>
@@ -72,7 +71,6 @@ export default function AddWorkerForm(props) {
                     value={newWorker['wynagrodzenieKwota']}
                     onChange={handleFormChange}></input>
             </p>
-
             <button>Dodaj</button>
         </form>
     </>
