@@ -1,5 +1,6 @@
 *{
-  margin: 1%
+  margin: 2px;
+  box-sizing: border-box
 }
 
 span{
@@ -34,4 +35,5 @@ h3{
 
 .sliderWrapper{
   width: 50%;
+  margin-left: 2%;
 }

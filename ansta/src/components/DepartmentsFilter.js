@@ -30,7 +30,7 @@ export default function DepartmentsFilter(props) {
 
 
     return (<>
-        {console.log(depList)}
+
         {
             Object.keys(depList).map((department, index) => {
                 return <div key={index}>

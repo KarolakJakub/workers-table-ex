@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import workersjson from './data/workers'
 import WorkersTable from './components/WorkersTable'
@@ -86,7 +85,7 @@ function App() {
 
 
 
-  return (<>{console.log(workers, minMaxPay)}
+  return (<>
     <div><WorkersTable
       workers={filterWorkers()}>
     </WorkersTable></div>
