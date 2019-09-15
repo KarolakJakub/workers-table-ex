@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function PayRange(props) {
 
-    const { minmax, payRangeSliderChange, value } = props
+    const { minmax, payRangeSliderChange, value, test } = props
 
     const labels = [
         {

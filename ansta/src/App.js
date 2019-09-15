@@ -67,7 +67,7 @@ function App() {
 
     return workers.filter(worker => {
 
-      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter)
+      return (((worker['imie'] + ' ' + worker['nazwisko'])).toLocaleLowerCase().includes(nameFilter.toLocaleLowerCase())
         && worker['wynagrodzenieKwota'] >= minMaxPay[0] && worker['wynagrodzenieKwota'] <= minMaxPay[1]
         && depFilter[worker['dzial']] === true)
 
