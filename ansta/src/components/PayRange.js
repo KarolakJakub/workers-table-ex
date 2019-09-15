@@ -7,9 +7,23 @@ export default function PayRange(props) {
 
     const [inputValue, setInputValue] = useState(value)
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    // }, [inputValueMin])
+        if(inputValue[0] >= minmax[0] && inputValue[0] <= minmax[1]){
+
+            const newValue = [inputValue[0], value[1]]
+            payRangeSliderChange(newValue)
+
+        }
+
+        if(inputValue[1] <= minmax[1] && inputValue[1] >= minmax[0]){
+
+            const newValue = [value[0], inputValue[1]]
+            payRangeSliderChange(newValue)
+
+        }
+
+    }, [inputValue])
 
     const labels = [
         {
@@ -37,11 +51,13 @@ export default function PayRange(props) {
 
             setInputValue(newValue)
 
+
         }else if(event.target.name === 'inputMax'){
 
             const newValue = [inputValue[0], event.target.value === '' ? 0 :parseInt(event.target.value)]
 
             setInputValue(newValue)
+
         }
         // setInputValue(event.target.value)
 
