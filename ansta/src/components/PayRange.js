@@ -1,5 +1,5 @@
 import Slider from '@material-ui/core/Slider';
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function PayRange(props) {
 
@@ -9,14 +9,14 @@ export default function PayRange(props) {
 
     useEffect(() => {
 
-        if(inputValue[0] >= minmax[0] && inputValue[0] <= minmax[1]){
+        if (inputValue[0] >= minmax[0] && inputValue[0] <= minmax[1]) {
 
             const newValue = [inputValue[0], value[1]]
             payRangeSliderChange(newValue)
 
         }
 
-        if(inputValue[1] <= minmax[1] && inputValue[1] >= minmax[0]){
+        if (inputValue[1] <= minmax[1] && inputValue[1] >= minmax[0]) {
 
             const newValue = [value[0], inputValue[1]]
             payRangeSliderChange(newValue)
@@ -24,6 +24,14 @@ export default function PayRange(props) {
         }
 
     }, [inputValue])
+
+    useEffect(() => {
+
+        if(value[0] !== inputValue[0] || value[1] !== inputValue[1]){
+
+        setInputValue(value)}
+
+    }, [value])
 
     const labels = [
         {
@@ -44,26 +52,27 @@ export default function PayRange(props) {
 
     const handleInputChange = (event) => {
 
-        if(event.target.name === 'inputMin'){
+        if (event.target.name === 'inputMin') {
 
-            const newValue = [event.target.value === '' ? 0 :parseInt(event.target.value), inputValue[1]]
-            console.log(newValue)
+            const newValue = [event.target.value === '' ? 0 : parseInt(event.target.value), inputValue[1]]
 
             setInputValue(newValue)
 
 
-        }else if(event.target.name === 'inputMax'){
+        } else if (event.target.name === 'inputMax') {
 
-            const newValue = [inputValue[0], event.target.value === '' ? 0 :parseInt(event.target.value)]
+            const newValue = [inputValue[0], event.target.value === '' ? 0 : parseInt(event.target.value)]
 
             setInputValue(newValue)
 
         }
-        // setInputValue(event.target.value)
+    }
+
+    const resetFilters = () => {
 
     }
 
-    return (<div className='sliderWrapper'>{console.log(inputValue)}
+    return (<div className='sliderWrapper'>{console.log(inputValue, value)}
         <Slider
             min={minmax[0]}
             max={minmax[1]}
@@ -73,16 +82,20 @@ export default function PayRange(props) {
             marks={labels}
             valueLabelDisplay="on"></Slider>
         <input
-        value={inputValue[0]}
-        name='inputMin'
-        onChange={handleInputChange}
+            value={inputValue[0]}
+            name='inputMin'
+            onChange={handleInputChange}
         ></input>
         -
         <input
-        value={inputValue[1]}
-        name='inputMax'
-        onChange={handleInputChange}
+            value={inputValue[1]}
+            name='inputMax'
+            onChange={handleInputChange}
         ></input>
+
+        <button
+        onClick={resetFilters}
+        >Zresetuj filter zarobków.</button>
 
     </div>
     )
